@@ -28,7 +28,6 @@ if __name__ == '__main__':
         dataset = pd.read_csv("data.csv")
         X = dataset.iloc[:, 0]
         Y = dataset.iloc[:, 1]
-        plt.scatter(X, Y, alpha=0.5)
         X_norm, Y_norm = normalize_values(X, Y)
         theta0 = 0.0
         theta1 = 0.0
