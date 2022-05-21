@@ -22,10 +22,10 @@ def parse_input(argv):
             x_coor = float(argv[1])
             y_coor = float(argv[2])
         except:
-            print("InputError - Points to be plotted must be floating.")
+            print("\033[91mInputError - Points to be plotted must be floating.\033[0m")
             sys.exit(1)
     elif len(argv) != 1:
-        print("InputError - plot.py can only receive 0 or 2 arguments.")
+        print("\033[91mInputError - plot.py can only receive 0 or 2 arguments.\033[0m")
         sys.exit(1)
     return x_coor, y_coor
 
@@ -43,7 +43,7 @@ def init_plot_values():
         plt.xlabel("Mileages")
         plt.scatter(X, Y, alpha = 0.5)
     except:
-        print("Caution! data.csv is not present or is corrupted.")
+        print("\033[93mCaution! data.csv is not present or is corrupted.\033[0m")
         sys.exit(1)
     return X, Y, X_norm
 
@@ -58,7 +58,7 @@ def get_thetas():
             thetas = thetas.split()
             thetas = np.array([float(thetas[0]), float(thetas[1])]).reshape(-1, 1)
     except:
-        print("Caution! .thetas file is not present or is corrupted. thetas will be set to (0, 0)")
+        print("\033[93mCaution! .thetas file is not present or is corrupted. thetas will be set to (0, 0)\033[0m")
         thetas = np.array([0.0, 0.0]).reshape(-1, 1)
     return thetas
 
