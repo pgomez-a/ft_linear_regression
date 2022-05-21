@@ -22,6 +22,19 @@ def normalize_values(X, Y):
     time.sleep(1)
     return X_norm, Y_norm
 
+def progress_bar(iters):
+    """
+    Shows a progress bar to see the evolution of the model.
+    """
+    bar = ""
+    for i in range(iters):
+        pos = (100 * i) / iters
+        if pos % 2 == 0:
+            bar += "="
+        print("\033[1m[{: <51}] {}/{}  {:.0f}%\033[0m".format(bar + ">", i + 1, iters, pos), end = "\r")
+        yield i
+    print()
+
 def gradient_descent(X, Y):
     """
     Computes the gradient descent of the given parameters.
@@ -31,7 +44,7 @@ def gradient_descent(X, Y):
     theta1 = 0.0
     alpha = 0.01
     iters = 10000
-    for iter in range(iters):
+    for iter in progress_bar(iters):
         Y_hat = estimate_price(theta0, theta1, X)
         tmpTheta0 = sum(Y_hat - Y) / Y.size
         tmpTheta1 = sum((Y_hat - Y) * X) / Y.size
