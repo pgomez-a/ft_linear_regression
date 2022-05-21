@@ -4,12 +4,17 @@
 
 import pandas as pd
 import numpy as np
+import sys
 
 ###########
 # Program #
 ###########
 
 if __name__ == '__main__':
+    if len(sys.argv) != 1:
+        print("\033[91mError. This executable takes no arguments.\033[0m")
+        print()
+        sys.exit(1)
     try:
         dataset = pd.read_csv("data.csv")
         X = dataset.iloc[:, 0]
