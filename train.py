@@ -1,7 +1,14 @@
+#############
+# Libraries #
+#############
+
 import pandas as pd
-import sys
 
 from predict import estimate_price
+
+#############
+# Functions #
+#############
 
 def normalize_values(X, Y):
     """
@@ -11,10 +18,14 @@ def normalize_values(X, Y):
     Y_norm = (Y - Y.mean()) / (max(Y) - min(Y))
     return X_norm, Y_norm
 
-def gradient_descent(X, Y, theta0, theta1, iters, alpha):
+def gradient_descent(X, Y):
     """
     Computes the gradient descent of the given parameters.
     """
+    theta0 = 0.0
+    theta1 = 0.0
+    alpha = 0.01
+    iters = 10000
     for iter in range(iters):
         Y_hat = estimate_price(theta0, theta1, X)
         tmpTheta0 = sum(Y_hat - Y) / Y.size
@@ -23,22 +34,21 @@ def gradient_descent(X, Y, theta0, theta1, iters, alpha):
         theta1 -= alpha * tmpTheta1
     return theta0, theta1
 
+###########
+# Program #
+###########
+
 if __name__ == '__main__':
     try:
         dataset = pd.read_csv("data.csv")
         X = dataset.iloc[:, 0]
         Y = dataset.iloc[:, 1]
         X_norm, Y_norm = normalize_values(X, Y)
-        theta0 = 0.0
-        theta1 = 0.0
-        iters = 10000
-        alpha = 0.01
-        theta0, theta1 = gradient_descent(X_norm, Y_norm, theta0, theta1, iters, alpha)
+        theta0, theta1 = gradient_descent(X_norm, Y_norm)
         with open(".thetas", "w") as f:
             f.write(str(theta0) + " " + str(theta1) + "\n")
             f.write(str(X.mean()) + " " + str(max(X)) + " " + str(min(X)) + "\n")
             f.write(str(Y.mean()) + " " + str(max(Y)) + " " + str(min(Y)) + "\n")
     except:
-        exc_type, exc_value, exc_tracebakc = sys.exc_info()
-        print("Exception: {} - {}".format(exc_type.__name__, exc_value))
+        print("Caution! data.csv is not present or is corrupted.")
         sys.exit(1)

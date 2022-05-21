@@ -1,26 +1,43 @@
+#############
+# Libraries #
+#############
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import sys
 
-if __name__ == '__main__':
-    try:
-        x_coor = None
-        y_coor = None
-        if len(sys.argv) == 3:
-            x_coor = float(sys.argv[1])
-            y_coor = float(sys.argv[2])
-        elif len(sys.argv) != 1:
-            print("Input Error. python3 plot.py / python3 plot.py float(mileage) float(price)")
+#############
+# Functions #
+#############
+
+def parse_input(argv):
+    """
+    Parses the input received by the program.
+    """
+    x_coor = None
+    y_coor = None
+    if len(argv) == 3:
+        try:
+            x_coor = float(argv[1])
+            y_coor = float(argv[2])
+        except:
+            print("InputError - Points to be plotted must be floating.")
             sys.exit(1)
-    except:
-        print("Input Error. python3 plot.py / python3 plot.py float(mileage) float(price)")
+    elif len(argv) != 1:
+        print("InputError - plot.py can only receive 0 or 2 arguments.")
         sys.exit(1)
+    return x_coor, y_coor
+
+def init_plot_values():
+    """
+    Reads the dataset and initializes the values to be plotted.
+    """
     try:
         dataset = pd.read_csv("data.csv")
         X = dataset.iloc[:, 0]
-        X_norm = (X - X.mean()) / (max(X) - min(X))
         Y = dataset.iloc[:, 1]
+        X_norm = (X - X.mean()) / (max(X) - min(X))
         plt.title("Car Price Prediction Model")
         plt.ylabel("Prices")
         plt.xlabel("Mileages")
@@ -28,18 +45,35 @@ if __name__ == '__main__':
     except:
         print("Caution! data.csv is not present or is corrupted.")
         sys.exit(1)
+    return X, Y, X_norm
+
+def get_thetas():
+    """
+    Reads the thetas stored in .thetas.
+    If .thetas doesn't exist, thetas will be set to (0, 0).
+    """
     try:
         with open(".thetas", "r") as f:
-            init_values = f.read()
-            init_values = init_values.split()
-            thetas = np.array([float(init_values[0]), float(init_values[1])]).reshape(-1, 1)
-    except Exception as f:
+            thetas = f.read()
+            thetas = thetas.split()
+            thetas = np.array([float(thetas[0]), float(thetas[1])]).reshape(-1, 1)
+    except:
         print("Caution! .thetas file is not present or is corrupted. thetas will be set to (0, 0)")
         thetas = np.array([0.0, 0.0]).reshape(-1, 1)
-    Y_hat = thetas[0] + thetas[1] * X_norm
-    Y_hat = Y_hat * (max(Y) - min(Y)) + Y.mean()
+    return thetas
+
+###########
+# Program #
+###########
+
+if __name__ == '__main__':
+    x_coor, y_coor = parse_input(sys.argv)
+    X, Y, X_norm = init_plot_values()
+    thetas = get_thetas()
+    Y_norm_hat = thetas[0] + thetas[1] * X_norm
+    Y_hat = Y_norm_hat * (max(Y) - min(Y)) + Y.mean()
     plt.plot(X, Y_hat, color = "red")
-    if type(x_coor) == float and type(y_coor) == float:
+    if x_coor != None and y_coor != None:
         plt.scatter(x_coor, y_coor, color = "black")
         plt.plot([x_coor, x_coor], [min(Y), y_coor], color = "orange", linestyle = "dashed")
         plt.plot([min(X), x_coor], [y_coor, y_coor], color = "orange", linestyle = "dashed")

@@ -1,10 +1,22 @@
+#############
+# Libraries #
+#############
+
 import numpy as np
+
+#############
+# Functions #
+#############
 
 def estimate_price(theta0, theta1, mileage):
     """
     Predicts the price of a car for a given mileage.
     """
     return theta0 + theta1 * mileage
+
+###########
+# Program #
+###########
 
 if __name__ == '__main__':
     try:
@@ -43,3 +55,4 @@ if __name__ == '__main__':
                 print()
     except:
         print("Goodbye! :)")
+        print()

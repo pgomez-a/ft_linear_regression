@@ -1,5 +1,13 @@
+#############
+# Libraries #
+#############
+
 import pandas as pd
 import numpy as np
+
+###########
+# Program #
+###########
 
 if __name__ == '__main__':
     try:
@@ -13,10 +21,10 @@ if __name__ == '__main__':
         sys.exit(1)
     try:
         with open(".thetas", "r") as f:
-            init_values = f.read()
-            init_values = init_values.split()
-            thetas = np.array([float(init_values[0]), float(init_values[1])]).reshape(-1, 1)
-    except Exception as f:
+            thetas = f.read()
+            thetas = thetas.split()
+            thetas = np.array([float(thetas[0]), float(thetas[1])]).reshape(-1, 1)
+    except:
         print("Caution! .thetas file is not present or is corrupted.")
         thetas = np.array([0.0, 0.0]).reshape(-1, 1)
     Y_hat = thetas[0] + thetas[1] * X_norm
