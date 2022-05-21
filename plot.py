@@ -71,7 +71,9 @@ if __name__ == '__main__':
     X, Y, X_norm = init_plot_values()
     thetas = get_thetas()
     Y_norm_hat = thetas[0] + thetas[1] * X_norm
-    Y_hat = Y_norm_hat * (max(Y) - min(Y)) + Y.mean()
+    Y_hat = Y_norm_hat * (max(Y) - min(Y))
+    if thetas[0] != 0.0 or thetas[1] != 0.0:
+        Y_hat += Y.mean()
     plt.plot(X, Y_hat, color = "red")
     if x_coor != None and y_coor != None:
         plt.scatter(x_coor, y_coor, color = "black")
