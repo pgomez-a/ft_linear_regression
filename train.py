@@ -36,7 +36,7 @@ def progress_bar(iters):
         yield i
     print()
 
-def gradient_descent(X_norm, Y_norm, X, Y):
+def gradient_descent(X_norm, Y_norm, X, Y, verbose):
     """
     Computes the gradient descent of the given parameters.
     """
@@ -49,7 +49,7 @@ def gradient_descent(X_norm, Y_norm, X, Y):
     for iter in progress_bar(iters):
         Y_norm_hat = estimate_price(theta0, theta1, X_norm)
         Y_hat = Y_norm_hat * (max(Y) - min(Y)) + Y.mean()
-        if iter % 50 == 0:
+        if verbose and iter % 50 == 0:
             plt.title("Car Price Prediction Model")
             plt.ylabel("Prices")
             plt.xlabel("Mileages")
@@ -69,8 +69,11 @@ def gradient_descent(X_norm, Y_norm, X, Y):
 ###########
 
 if __name__ == '__main__':
-    if len(sys.argv) != 1:
-        print("\033[91mError. This executable takes no arguments.\033[0m")
+    verbose = 0
+    if len(sys.argv) == 2 and sys.argv[1] == "-v":
+        verbose = 1
+    elif len(sys.argv) != 1:
+        print("\033[91mError. This executable takes the argument -v.\033[0m")
         print()
         sys.exit(1)
     try:
@@ -80,7 +83,7 @@ if __name__ == '__main__':
         X = dataset.iloc[:, 0]
         Y = dataset.iloc[:, 1]
         X_norm, Y_norm = normalize_values(X, Y)
-        theta0, theta1 = gradient_descent(X_norm, Y_norm, X, Y)
+        theta0, theta1 = gradient_descent(X_norm, Y_norm, X, Y, verbose)
         print("\033[1mStoring values...\033[0m")
         with open(".thetas", "w") as f:
             f.write(str(theta0) + " " + str(theta1) + "\n")
