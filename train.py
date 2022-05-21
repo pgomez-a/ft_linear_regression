@@ -2,6 +2,7 @@
 # Libraries #
 #############
 
+import matplotlib.pyplot as plt
 import pandas as pd
 import time
 import sys
@@ -35,7 +36,7 @@ def progress_bar(iters):
         yield i
     print()
 
-def gradient_descent(X, Y):
+def gradient_descent(X_norm, Y_norm, X, Y):
     """
     Computes the gradient descent of the given parameters.
     """
@@ -44,10 +45,21 @@ def gradient_descent(X, Y):
     theta1 = 0.0
     alpha = 0.01
     iters = 10000
+    plt.ion()
     for iter in progress_bar(iters):
-        Y_hat = estimate_price(theta0, theta1, X)
-        tmpTheta0 = sum(Y_hat - Y) / Y.size
-        tmpTheta1 = sum((Y_hat - Y) * X) / Y.size
+        Y_norm_hat = estimate_price(theta0, theta1, X_norm)
+        Y_hat = Y_norm_hat * (max(Y) - min(Y)) + Y.mean()
+        if iter % 50 == 0:
+            plt.title("Car Price Prediction Model")
+            plt.ylabel("Prices")
+            plt.xlabel("Mileages")
+            plt.scatter(X, Y, alpha = 0.5)
+            plt.plot(X, Y_hat, color = "red")
+            plt.draw()
+            plt.pause(0.000000001)
+            plt.clf()
+        tmpTheta0 = sum(Y_norm_hat - Y_norm) / Y_norm.size
+        tmpTheta1 = sum((Y_norm_hat - Y_norm) * X_norm) / Y_norm.size
         theta0 -= alpha * tmpTheta0
         theta1 -= alpha * tmpTheta1
     return theta0, theta1
@@ -68,7 +80,7 @@ if __name__ == '__main__':
         X = dataset.iloc[:, 0]
         Y = dataset.iloc[:, 1]
         X_norm, Y_norm = normalize_values(X, Y)
-        theta0, theta1 = gradient_descent(X_norm, Y_norm)
+        theta0, theta1 = gradient_descent(X_norm, Y_norm, X, Y)
         print("\033[1mStoring values...\033[0m")
         with open(".thetas", "w") as f:
             f.write(str(theta0) + " " + str(theta1) + "\n")
