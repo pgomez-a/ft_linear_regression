@@ -11,8 +11,10 @@ Different executables have been implemented to perform different tasks. Instruct
   - Gets theta0 and theta1 stored in .thetas.
   - If .thetas doesn't exist, theta0 and theta1 are set to 0.0.
 
-<img width="500" alt="predict" src="https://user-images.githubusercontent.com/74931024/169715529-8395709a-2d1a-4168-b494-c3fd31c4456f.png">
-
+<div align="center">
+<img width="700" alt="predict" src="https://user-images.githubusercontent.com/74931024/169715529-8395709a-2d1a-4168-b494-c3fd31c4456f.png">
+</div>
+  
 ### What is linear regression?
 **Linear regression** is a statistical model that allows us to predict the value of one variable from the values of other variables. This will be possible only if there is a **dependency between these variables.** With this project we are trying to predict the price of a car given its mileage. Since the mileage of a car affects its price, we will try to find a pattern between the price and the mileage of a car. Once the pattern is found, we will be able to make such predictions.<br>
 
