@@ -7,12 +7,19 @@ Different executables have been implemented to perform different tasks. Instruct
 - **predict.py:** predicts the price of a car for a given mileage.
   - It takes no arguments.
   - The requested mileage must be float.
-  - Press ^D to stop execution.
+  - Press **^D** to stop execution.
   - Gets theta0 and theta1 stored in .thetas.
   - If .thetas doesn't exist, theta0 and theta1 are set to 0.0.
 
+- **train.py:** trains the model using normalization and gradient descent.
+  - It takes the argument **-v** to plot model training.
+  - It shows a progress bar while training the model.
+  - Calculates theta0 and theta1 for future predictions.
+  - theta0 and theta1 are stored in .thetas
+  - Reads data.csv dataset by default.
+
 <div align="center">
-<img width="700" alt="predict" src="https://user-images.githubusercontent.com/74931024/169715529-8395709a-2d1a-4168-b494-c3fd31c4456f.png">
+<img width=500 alt="train.py -v" src="https://user-images.githubusercontent.com/74931024/169716090-464ff854-e6c1-460d-89d0-1ae627c04204.gif">
 </div>
   
 ### What is linear regression?
