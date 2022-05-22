@@ -11,17 +11,6 @@ Program that predicts the price of a car by using a linear function train with a
                                                                                                                                                     
 **Disclaimer:** what we are doing here is a **simple linear regression.** Real world applications involve the use of many variables to predict another. This is called **multiple linear regression.** For example, there are many factors that affect the price of a car. We cannot predict its price just by knowing its mileage. But to implement multiple regression models, we first need to fully understand how simple linear regression works. This is the real goal of the project: to be able to understand how to train a machine learning model using simple linear regression.<br>
 
-Before we start delving into mathematical concepts, we need to know what we want to implement and how we are going to go about achieving it. As we saw before, we are trying to implement a machine learning algorithm that is capable of predicting the price of a car for a given mileage. How will we do that? We will train our algorithm to fit the training dataset. Once the model fits the values in the dataset, it is ready to predict new values that are not present in the dataset it was trained on.
-
 <div align="center">
 <img width=350 alt="Precit-Evaluate-Improve" src="https://user-images.githubusercontent.com/74931024/169713947-5da770bd-ed9d-4a7c-8875-81806f2b605a.jpeg">
 </div>
-
-
-### Hypothesis
-
-### Cost Function
-
-### Gradient Descent
-
-### Normalization
