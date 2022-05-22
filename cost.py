@@ -20,6 +20,8 @@ def parse_input(argv):
         verbose = 0
     elif len(sys.argv) == 2 and sys.argv[1] == "-v1":
         verbose = 1
+    elif len(sys.argv) == 2 and sys.argv[1] == "-v":
+        verbose = 2
     elif len(sys.argv) != 1:
         print("\033[91mError. This executable takes the argument -v[0-1].\033[0m")
         print()
@@ -58,27 +60,56 @@ def show_cost_function(theta0, theta1, X, Y, cost, verbose):
     """
     Displays cost function.
     """
-    thetas = [list(), list()]
-    error = [list(), list()]
-    Y_hat = [0.0, 0.0]
-    count = -100.0
-    while count < 100.0:
-        Y_hat[0] = (theta0 + count) + theta1 * X
-        Y_hat[1] = theta0 + (theta1 + count) * X
-        cost0 = np.sum((Y_hat[0] - Y)**2) / (2 * Y.size)
-        cost1 = np.sum((Y_hat[1] - Y)**2) / (2 * Y.size)
-        thetas[0].append(theta0 + count)
-        thetas[1].append(theta1 + count)
-        error[0].append(cost0)
-        error[1].append(cost1)
-        count += 0.1
-    if verbose == 0:
-        plt.plot(thetas[0], error[0], color = "blue", label = "theta0")
-        plt.scatter(theta0, cost, color = "blue")
+    if verbose != 2:
+        thetas = [list(), list()]
+        error = [list(), list()]
+        Y_hat = [0.0, 0.0]
+        count = -50.0
+        while count < 50.0:
+            Y_hat[0] = (theta0 + count) + theta1 * X
+            Y_hat[1] = theta0 + (theta1 + count) * X
+            cost0 = sum((Y_hat[0] - Y)**2) / (2 * Y.size)
+            cost1 = sum((Y_hat[1] - Y)**2) / (2 * Y.size)
+            thetas[0].append(theta0 + count)
+            thetas[1].append(theta1 + count)
+            error[0].append(cost0)
+            error[1].append(cost1)
+            count += 0.1
+        plt.ylabel("cost")
+        if verbose == 0:
+            plt.xlabel("theta0")
+            plt.plot(thetas[0], error[0], color = "blue", label = "theta0")
+            plt.scatter(theta0, cost, color = "blue")
+            plt.legend()
+            plt.show()
+        else:
+            plt.xlabel("theta1")
+            plt.plot(thetas[1], error[1], color = "orange", label = "theta1")
+            plt.scatter(theta1, cost, color = "orange")
+            plt.legend()
     else:
-        plt.plot(thetas[1], error[1], color = "orange", label = "theta1")
-        plt.scatter(theta1, cost, color = "orange")
-    plt.legend()
+        fig = plt.figure()
+        ax = fig.add_subplot(projection = "3d")
+        output = [list(), list(), list()]
+        ct_theta0 = -50.0
+        while ct_theta0 < 50.0:
+            ct_theta1 = -50.0
+            while ct_theta1 < 50.0:
+                Y_hat = (theta0 + ct_theta0) + (theta1 + ct_theta1) * X
+                z = sum((Y_hat - Y)**2) / (2 * Y.size)
+                if ct_theta0 != 0.0 or ct_theta1 != 0.0:
+                    output[0].append(theta0 + ct_theta0)
+                    output[1].append(theta1 + ct_theta1)
+                    output[2].append(z)
+                ct_theta1 += 2
+            ct_theta0 += 2
+        ax.set_xlabel("theta0")
+        ax.set_ylabel("theta1")
+        ax.set_zlabel("cost")
+        ax.scatter(output[0], output[1], output[2], color = "blue")
+        Y_hat = theta0 + theta1 * X
+        z = sum((Y_hat - Y)**2) / (2 * Y.size)
+        ax.scatter([theta0], [theta1], [z], color = "red")
     plt.show()
     return
 
