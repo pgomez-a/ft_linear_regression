@@ -19,7 +19,7 @@ Different executables have been implemented to perform different tasks. Instruct
   - Reads data.csv dataset by default.
 
 <div align="center">
-<img width=500 alt="train.py -v" src="https://user-images.githubusercontent.com/74931024/169716090-464ff854-e6c1-460d-89d0-1ae627c04204.gif">
+<img width=500 alt="train.py -v" src="https://user-images.githubusercontent.com/74931024/169717621-de37be6f-f92a-48ca-94d8-d4fb49c24a3f.gif">
 </div>
 
 - **cost.py:** displays the current cost for the model.
