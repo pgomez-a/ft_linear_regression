@@ -32,6 +32,8 @@ Different executables have been implemented to perform different tasks. Instruct
 <div align="center">
 <img width="400" alt="theta0 cost" src="https://user-images.githubusercontent.com/74931024/169716713-d3916bb2-4596-49ff-8fbd-585ff8937e1a.png">
 <img width="400" alt="theta1 cost" src="https://user-images.githubusercontent.com/74931024/169716759-facdcc03-e113-4d5b-9e99-6e42d0e0267c.png">
+<img width="400" alt="3d_cost_1" src="https://user-images.githubusercontent.com/74931024/169717020-cda7e33d-bb8e-461b-b53e-f8ff23edffd4.png">
+<img width="400" alt="3d_cost_2" src="https://user-images.githubusercontent.com/74931024/169716937-4d429566-612f-4f2e-93c8-db7c850a727f.png">
 </div>
   
 ### What is linear regression?
@@ -40,8 +42,6 @@ Different executables have been implemented to perform different tasks. Instruct
 <div align="center">
 <img width=400 alt="linear_regression" src="https://user-images.githubusercontent.com/74931024/169714421-206a152d-1683-4d51-9628-49186b323ac9.png">
 <img width=400 alt="linear_regression" src="https://user-images.githubusercontent.com/74931024/169714395-3a0a370a-8073-4bb3-9485-02a87abdafd8.png">
-<img width="400" alt="3d_cost_1" src="https://user-images.githubusercontent.com/74931024/169717020-cda7e33d-bb8e-461b-b53e-f8ff23edffd4.png">
-<img width="400" alt="3d_cost_2" src="https://user-images.githubusercontent.com/74931024/169716937-4d429566-612f-4f2e-93c8-db7c850a727f.png">
 </div>
                                                                                                                                                     
 **Disclaimer:** what we are doing here is a **simple linear regression.** Real world applications involve the use of many variables to predict another. This is called **multiple linear regression.** For example, there are many factors that affect the price of a car. We cannot predict its price just by knowing its mileage. But to implement multiple regression models, we first need to fully understand how simple linear regression works. This is the real goal of the project: to be able to understand how to train a machine learning model using simple linear regression.<br>
