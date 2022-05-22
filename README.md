@@ -38,7 +38,7 @@ Different executables have been implemented to perform different tasks. Instruct
 
 - **plot.py:** plots the model with the regression line.
   - Takes two float values as arguments to plot a point.
-  - Takes theta0 & theta1 stored in .thetas to compute the cost.
+  - Takes theta0 & theta1 stored in .thetas to plot the regression line.
   - If .thetas doesn't exist, theta0 & theta1 are set to 0.0.
 
 <div align="center">
