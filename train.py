@@ -47,7 +47,7 @@ def gradient_descent(X, Y, verbose):
         Y_norm_hat = theta0 + theta1 * X_norm
         if verbose and it % 50 == 0:
             Y_hat = Y_norm_hat * (max(Y) - min(Y)) + Y.mean()
-            plt.title("Car Price Prediction Model")
+            plt.title("Car Price Prediction Model  {}/{}".format(it + 1, iters) )
             plt.ylabel("Prices")
             plt.xlabel("Mileages")
             plt.scatter(X, Y, alpha = 0.5)
