@@ -1,6 +1,8 @@
 # ft_linear_regression
 
-Welcome to the amazing world of Machine Learning! This time we are going to implement a linear regression algorithm to predict the price of a car for a given mileage. For this, the dataset that we will use will be data.csv. For today's project, we will need to read this dataset and perform a linear regression with a gradient descent algorithm, finding the best regression line that fits the dataset.<br>
+**If you want to learn more about IT topics, visit my website:** [**IA Notes**](https://ia-notes.com/)
+
+Welcome to the amazing world of **Machine Learning!** This time we are going to implement a linear regression algorithm to predict the price of a car for a given mileage. For this, the dataset that we will use will be data.csv. For today's project, we will need to read this dataset and perform a linear regression with a gradient descent algorithm, finding the best regression line that fits the dataset.<br>
 
 Different executables have been implemented to perform different tasks. Instructions for using each executable are shown below. Feel free to play with them however you want. And of course feel free to contact me if you have any problems playing with it.
 
