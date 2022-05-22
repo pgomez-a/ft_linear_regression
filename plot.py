@@ -37,7 +37,6 @@ def init_plot_values():
         dataset = pd.read_csv("data.csv")
         X = dataset.iloc[:, 0]
         Y = dataset.iloc[:, 1]
-        X_norm = (X - X.mean()) / (max(X) - min(X))
         plt.title("Car Price Prediction Model")
         plt.ylabel("Prices")
         plt.xlabel("Mileages")
@@ -45,7 +44,7 @@ def init_plot_values():
     except:
         print("\033[93mCaution! data.csv is not present or is corrupted.\033[0m")
         sys.exit(1)
-    return X, Y, X_norm
+    return X, Y
 
 def get_thetas():
     """
@@ -54,12 +53,11 @@ def get_thetas():
     """
     try:
         with open(".thetas", "r") as f:
-            thetas = f.read()
-            thetas = thetas.split()
-            thetas = np.array([float(thetas[0]), float(thetas[1])]).reshape(-1, 1)
+            thetas = f.read().split()
+            thetas = np.array([[float(thetas[0])], [float(thetas[1])]])
     except:
         print("\033[93mCaution! .thetas file is not present or is corrupted. thetas will be set to (0, 0)\033[0m")
-        thetas = np.array([0.0, 0.0]).reshape(-1, 1)
+        thetas = np.array([[0.0], [0.0]])
     return thetas
 
 ###########
@@ -68,15 +66,12 @@ def get_thetas():
 
 if __name__ == '__main__':
     x_coor, y_coor = parse_input(sys.argv)
-    X, Y, X_norm = init_plot_values()
+    X, Y = init_plot_values()
     thetas = get_thetas()
-    Y_norm_hat = thetas[0] + thetas[1] * X_norm
-    Y_hat = Y_norm_hat * (max(Y) - min(Y))
-    if thetas[0] != 0.0 or thetas[1] != 0.0:
-        Y_hat += Y.mean()
+    Y_hat = thetas[0] + thetas[1] * X
     plt.plot(X, Y_hat, color = "red")
     if x_coor != None and y_coor != None:
-        plt.scatter(x_coor, y_coor, color = "black")
+        plt.scatter(x_coor, y_coor, color = "red")
         plt.plot([x_coor, x_coor], [min(Y), y_coor], color = "orange", linestyle = "dashed")
         plt.plot([min(X), x_coor], [y_coor, y_coor], color = "orange", linestyle = "dashed")
     plt.show()
