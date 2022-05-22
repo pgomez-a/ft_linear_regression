@@ -77,15 +77,17 @@ def show_cost_function(theta0, theta1, X, Y, cost, verbose):
             count += 0.1
         plt.ylabel("cost")
         if verbose == 0:
+            plt.title("theta0 cost")
             plt.xlabel("theta0")
             plt.plot(thetas[0], error[0], color = "blue", label = "theta0")
-            plt.scatter(theta0, cost, color = "blue")
+            plt.scatter(theta0, cost, color = "blue", label="[{}, {}]".format(theta0[0], cost))
             plt.legend()
             plt.show()
         else:
+            plt.title("theta1 cost")
             plt.xlabel("theta1")
             plt.plot(thetas[1], error[1], color = "orange", label = "theta1")
-            plt.scatter(theta1, cost, color = "orange")
+            plt.scatter(theta1, cost, color = "orange", label = "[{}, {}]".format(theta1[0], cost))
             plt.legend()
     else:
         fig = plt.figure()
