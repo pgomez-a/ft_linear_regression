@@ -3,7 +3,7 @@
 <img width="1098" alt="Captura de Pantalla 2022-05-23 a las 0 19 05" src="https://user-images.githubusercontent.com/74931024/169718424-69861d78-9cde-4c56-9cf5-9ee6171f8f1c.png">
 
 
-**If you want to learn more about IT topics, visit my website:** [**IA Notes**](https://ia-notes.com/)
+**If you want to learn more about IT topics, [I invite you to join my Patreon channel](https://www.patreon.com/pgomeza) and visit my website:** [**IA Notes**](https://ia-notes.com/)
 
 Welcome to the amazing world of **Machine Learning!** This time we are going to implement a linear regression algorithm to predict the price of a car for a given mileage. For this, the dataset that we will use will be data.csv. For today's project, we will need to read this dataset and perform a linear regression with a gradient descent algorithm, finding the best regression line that fits the dataset.<br>
 
