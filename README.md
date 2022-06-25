@@ -1,6 +1,6 @@
 # ft_linear_regression
 
-<img width="1098" alt="Captura de Pantalla 2022-05-23 a las 0 19 05" src="https://user-images.githubusercontent.com/74931024/169718424-69861d78-9cde-4c56-9cf5-9ee6171f8f1c.png">
+<img width="1098" alt="ft_linear_regression" src="https://user-images.githubusercontent.com/74931024/169718424-69861d78-9cde-4c56-9cf5-9ee6171f8f1c.png">
 
 
 **If you want to learn more about IT topics, [I invite you to join my Patreon channel](https://www.patreon.com/pgomeza) and visit my website:** [**IA Notes**](https://ia-notes.com/)
